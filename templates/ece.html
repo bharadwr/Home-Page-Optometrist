@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+  padding-top: 10px;
+  text-align: center;
+  font-family: monaco, monospace;
+  background: url(https://media.giphy.com/media/TZf4ZyXb0lXXi/giphy.gif) 50%;
+  background-size: cover;
+}
+h1, h2, h3 {
+  display: inline-block;
+  background: #fff;
+}
+h1 {
+  font-size: 50px
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 15px;
+}
+span {
+  background: #fd0;
+}
+</style>
+<tbody>
+<h1><span>ECE Faculty Directory</span></h1><br>
+<h2><span>Click on a faculty member to view their edited photo</span></h2><br>
+  {% for url in profile_dict %}
+    <tr>
+      <h3><a href={{url_for('view_page')}}?url={{url}}>{{profile_dict[url]}}</a></h3><br>
+    </tr>
+  {% endfor %}
+</tbody>
+</html>

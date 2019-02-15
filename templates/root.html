@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<style>
+body {
+  padding-top: 20px;
+  text-align: center;
+  font-family: monaco, monospace;
+  background: url(https://media.giphy.com/media/TZf4ZyXb0lXXi/giphy.gif) 50%;
+  background-size: cover;
+}
+h1, h2, blink{
+  display: inline-block;
+  background: #fff;
+}
+h1 {
+  font-size: 30px
+}
+h2 {
+  font-size: 20px;
+}
+span {
+  background: #fd0;
+}
+blink {
+  animation: blinker 0.5s linear infinite;
+  font-size: 20px;
+}
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: 15px;
+    color: white;
+    text-align: center;
+}
+input[type=text] {
+  padding: 0;
+  height: 30px;
+  position: relative;
+  left: 0;
+  outline: none;
+  border: 1px solid #cdcdcd;
+  border-color: rgba(0, 0, 0, .15);
+  background-color: #fff;
+  font-size: 16px;
+}
+
+.searchBox {
+  width: 526px;
+  margin-right: -4px;
+}
+</style>
+<h1><span>ECE 364 Project</span></h1><br>
+<h1>Home Page Optometrist <span>by Rtvik Bharadwaj</span></h1><br>
+<h2>Enter a page to add spectacles to the photo</h2><br>
+<body>
+    <form method="GET" action="{{ url_for('view_page')}}">
+        <input class="searchBox" type="text" name="url" size="40" value="">
+        <input type="color" name="glass_color" value="#000000"><br>
+        <input type="checkbox" name="mustache" value="mustache"> <h2>Mustache</h2>
+        <input type="checkbox" name="cartoon" value="cartoon"> <h2>Cartoonify</h2><br><br>
+        <input type="submit" value="Optometrize">
+    </form><br><br><br>
+	<!--
+	Credit: Flask Documentation, Message Flashing, not copied so don't count this
+		License: © Copyright 2010 Pallets Team
+			 Retrieved from http://flask.pocoo.org/docs/1.0/license/
+	-->
+    {% with errors = get_flashed_messages() %}
+      {% if errors %}
+        <ul class=flashes>
+        {% for error in errors %}
+          <blink><strong>Error:</strong> {{ error }} </blink>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+</body>
+<div class="footer">
+  <h2><span><a href="{{ url_for('view_directory')}}">ECE Faculty</a></span></h2>&nbsp&nbsp&nbsp
+  <h2><span><a href="{{ url_for('view_page')}}?url=http%3A%2F%2Falexquinn.org%2F&glass_color=%23000000">Dr. Quinn</a></span></h2><br><br>
+</div>
+</html>
